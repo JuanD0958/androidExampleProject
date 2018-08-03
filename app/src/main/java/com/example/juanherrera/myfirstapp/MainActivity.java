@@ -4,6 +4,7 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -13,6 +14,8 @@ import com.example.juanherrera.myfirstapp.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
     //Store the binding
     private ActivityMainBinding activityMainBinding;
+
+    private BottomSheetBehavior mBottomSheetBehavior;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +43,14 @@ public class MainActivity extends AppCompatActivity {
                         break;
 
                     case R.id.more_options:
+                        mBottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottom_navigation_secondary));
+                        if(mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED){
+                            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        }else{
+                            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                        }
                         selectedFragment = new MoreFragment();
-                        break;
-                }
+                        break;                }
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                 return true;
             }

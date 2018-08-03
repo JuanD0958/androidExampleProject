@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-
     <android.support.design.widget.CoordinatorLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -13,24 +12,32 @@
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_above="@id/bottom_navigation"></FrameLayout>
+            android:layout_above="@id/bottom_navigation"
+            android:layout_alignParentTop="true"/>
 
-            <android.support.design.widget.BottomNavigationView
-                android:id="@+id/bottom_navigation"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="top"
-                android:background="@color/colorAccent"
-                app:behavior_hideable="false"
-                app:behavior_peekHeight="100dp"
-                app:layout_behavior="@string/bottom_sheet_behavior"
-                app:menu="@menu/bottom_navigation"
-                 >
-            </android.support.design.widget.BottomNavigationView>
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation_secondary"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="top"
+            android:background="@color/colorPrimary"
+            app:behavior_hideable="false"
+            android:paddingBottom="50dp"
+            app:behavior_peekHeight="50dp"
+            android:layout_above="@id/bottom_navigation"
+            app:layout_behavior="@string/bottom_sheet_behavior"
+            app:menu="@menu/bottom_navigation" />
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="top"
+            android:background="@color/colorAccent"
+            app:layout_behavior="@string/bottom_sheet_behavior"
+            app:menu="@menu/bottom_navigation"/>
     </android.support.design.widget.CoordinatorLayout>
 </layout>
-
-
-
