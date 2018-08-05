@@ -22,7 +22,7 @@
             android:layout_height="100dp"
             android:layout_alignParentBottom="true"
             android:layout_gravity="top"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorAccent"
             app:behavior_hideable="false"
             android:paddingBottom="50dp"
             app:behavior_peekHeight="50dp"

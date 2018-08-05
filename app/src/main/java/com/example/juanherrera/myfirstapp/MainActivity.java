@@ -14,7 +14,6 @@ import com.example.juanherrera.myfirstapp.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
     //Store the binding
     private ActivityMainBinding activityMainBinding;
-
     private BottomSheetBehavior mBottomSheetBehavior;
 
     @Override
@@ -23,6 +22,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_main);
         BottomNavigationView bottomNavigationView = activityMainBinding.bottomNavigation;
+        BottomNavigationView bottomNavigationViewSecondary = activityMainBinding.bottomNavigationSecondary;
+        menuActions(bottomNavigationView);
+        menuActions(bottomNavigationViewSecondary);
+    }
+
+    private void menuActions(BottomNavigationView bottomNavigationView){
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
     }
@@ -32,14 +37,19 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
-
                 switch (item.getItemId()){
                     case R.id.nav_home:
                         selectedFragment = new HomeFragment();
+                        mBottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottom_navigation_secondary));
+                        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                         break;
 
                     case R.id.nav_profile:
                         selectedFragment = new ProfileFragment();
+                        mBottomSheetBehavior = BottomSheetBehavior.from(findViewById(R.id.bottom_navigation_secondary));
+                        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
                         break;
 
                     case R.id.more_options:
@@ -49,9 +59,8 @@ public class MainActivity extends AppCompatActivity {
                         }else{
                             mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
                         }
-                        selectedFragment = new MoreFragment();
-                        break;                }
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                        break;
+                }
                 return true;
             }
         };
